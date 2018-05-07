@@ -1,0 +1,15 @@
+<h1>Factura</h1>
+<form action="">
+    <mat-form-field>
+      <input matInput placeholder="Cliente" value="">
+    </mat-form-field>
+  
+    <mat-form-field >
+      <textarea matInput placeholder="Observaciones"></textarea>
+    </mat-form-field>
+
+    <div class="actions">
+      <button mat-raised-button>CANCELAR</button>
+      <button mat-raised-button color="primary" (click)="saveInvoice()">VENDER</button>
+    </div>
+</form>

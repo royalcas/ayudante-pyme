@@ -1,0 +1,58 @@
+<div class="grid-container">
+  <h1 class="mat-h1">Facturas</h1>
+  <mat-grid-list cols="1">
+      <mat-grid-tile colspan="1">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="newInvoice()"
+        >
+        NUEVA VENTA
+      </button>
+      </mat-grid-tile>
+    <mat-grid-tile colspan="1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            Detalle de facturas
+            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" xPosition="before">
+              <button mat-menu-item>Expand</button>
+              <button mat-menu-item>Remove</button>
+            </mat-menu>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <table mat-table #table [dataSource]="invoices">
+
+  
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef> N. </th>
+              <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+            <ng-container matColumnDef="date">
+              <th mat-header-cell *matHeaderCellDef>Fecha </th>
+              <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="total">
+              <th mat-header-cell *matHeaderCellDef> Total </th>
+              <td mat-cell *matCellDef="let element"> {{element.total?.value}} </td>
+            </ng-container>
+        
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="items">
+              <th mat-header-cell *matHeaderCellDef>Artículos </th>
+              <td mat-cell *matCellDef="let element"> {{element.items?.length}} </td>
+            </ng-container>
+        
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
