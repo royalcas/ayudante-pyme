@@ -17,6 +17,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
       this.invoiceService.getAll('hood').subscribe((items: Invoice[]) => {
         this.invoices = items;
+        console.log(items);
       });
   }
 

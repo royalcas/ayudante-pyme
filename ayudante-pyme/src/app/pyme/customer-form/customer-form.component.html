@@ -1,0 +1,24 @@
+<h1>Nuevo Cliente</h1>
+<form action="">
+    
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Nombre" name="name" [(ngModel)]="person.name" value="">
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Tipo de Identificación" name="id-type" [(ngModel)]="person.identification.typeId" >
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Número de Identificación" name="id-type" [(ngModel)]="person.identification.idNumber" >
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Email" name="id-type" [(ngModel)]="person.email" >
+    </mat-form-field>
+
+    <div class="actions">
+      <button mat-raised-button>CANCELAR</button>
+      <button mat-raised-button color="primary" (click)="savePerson()">GUARDAR</button>
+    </div>
+</form>

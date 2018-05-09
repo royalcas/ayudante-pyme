@@ -1,3 +1,5 @@
+import { CustomerDashboardComponent } from './customer-dashboard/customer-dashboard.component';
+import { CustomerFormComponent } from './customer-form/customer-form.component';
 import { InventoryFormComponent } from './inventory-form/inventory-form.component';
 import { InvoiceFormComponent } from './invoice-form/invoice-form.component';
 import { ProviderFormComponent } from './provider-form/provider-form.component';
@@ -16,6 +18,9 @@ const coachingRoutes: Routes = [
             { path: '', component: DashboardComponent },
             { path: 'proveedores', component: ProviderDashboardComponent },
             { path: 'nuevo-proveedor', component: ProviderFormComponent },
+            { path: 'cliente', component: CustomerFormComponent },
+            { path: 'directorio/clientes', component: CustomerDashboardComponent },
+            { path: 'nuevo-producto', component: InventoryFormComponent },
             { path: 'nueva-factura', component: InvoiceFormComponent },
             { path: 'inventario', component: InventoryDashboardComponent },
             { path: 'nuevo-elemento-inventario', component: InventoryFormComponent }

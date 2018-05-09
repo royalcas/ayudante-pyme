@@ -1,24 +1,24 @@
-<div class="grid-container">
-  <h1 class="mat-h1">Dashboard</h1>
-  <mat-grid-list cols="2" rowHeight="350px">
-    <mat-grid-tile *ngFor="let card of cards" [colspan]="card.cols" [rowspan]="card.rows">
-      <mat-card class="dashboard-card">
-        <mat-card-header>
-          <mat-card-title>
-            {{card.title}}
-            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item>Expand</button>
-              <button mat-menu-item>Remove</button>
-            </mat-menu>
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="dashboard-card-content">
-          <div>Card Content Here</div>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list>
-</div>
+<h1>Nuevo Producto</h1>
+<form action="">
+    
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Nombre" name="name" [(ngModel)]="product.name" value="">
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+        <input matInput placeholder="Descripción" name="description" [(ngModel)]="product.description" value="">
+      </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Valor por Unidad" name="value-per-unit" [(ngModel)]="product.valuePerUnit.value" >
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+        <input matInput placeholder="Cantidad en Inventario" name="id-type" [(ngModel)]="product.quantity" >
+      </mat-form-field>
+
+    <div class="actions">
+      <button mat-raised-button>CANCELAR</button>
+      <button mat-raised-button color="primary" (click)="save()">GUARDAR</button>
+    </div>
+</form>

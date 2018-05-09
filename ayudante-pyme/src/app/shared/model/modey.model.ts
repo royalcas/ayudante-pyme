@@ -1,7 +1,11 @@
 export class Money {
+    public static default() {
+        return new Money(0);
+    }
+
     constructor(
-        public currency: string = 'COP',
-        public value: number
+        public value: number,
+        public currency: string = 'COP'
     ) {
     }
 }

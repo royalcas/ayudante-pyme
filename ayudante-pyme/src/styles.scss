@@ -1,4 +1,17 @@
 body {
     padding: 0px;
     margin: 0px;
+    font-family: Roboto, sans-serif;
+}
+
+.full-width.mat-form-field {
+    width: 100%;
+    display: block;
+    .mat-form-field-infix{
+        width: 100%;
+    }
+}
+
+table {
+    width: 100%;
 }

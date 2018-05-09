@@ -1,4 +1,8 @@
 export class ContactInformation {
+    public static default(): ContactInformation {
+        return new ContactInformation([]);
+    }
+
     constructor (
         public phoneNumbers: PhoneNumber[]
     ) {}

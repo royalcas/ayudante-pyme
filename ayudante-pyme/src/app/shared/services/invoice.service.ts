@@ -15,6 +15,6 @@ export class InvoiceService {
   }
 
   add(tenant: string, invoice: Invoice): Observable<any> {
-    return from(this.afs.collection<Invoice>(`${tenant}-invoices`).add(invoice));
+    return from(this.afs.collection<Invoice>(`${tenant}-invoices`).add({ ...invoice }));
   }
 }

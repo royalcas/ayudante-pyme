@@ -1,15 +1,31 @@
 <h1>Factura</h1>
 <form action="">
-    <mat-form-field>
-      <input matInput placeholder="Cliente" value="">
+    <mat-form-field class="full-width">
+      <input matInput [(ngModel)]="invoice.date" name="date" [matDatepicker]="picker" placeholder="Fecha">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
-  
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Cliente" name="customer" [matAutocomplete]="auto"  [(ngModel)]="invoice.customer" [formControl]="customerFormControl">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let person of filteredCustomers" [value]="person.identification.idNumber">
+          
+          <span>{{ person.name }}</span>
+          <small>({{person.identification.idNumber}})</small>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Vendedor" name="seller" [(ngModel)]="invoice.seller">
+    </mat-form-field>
+
     <mat-form-field >
-      <textarea matInput placeholder="Observaciones"></textarea>
+      <textarea matInput placeholder="Observaciones" name="observations"></textarea>
     </mat-form-field>
 
     <div class="actions">
-      <button mat-raised-button>CANCELAR</button>
-      <button mat-raised-button color="primary" (click)="saveInvoice()">VENDER</button>
+      <button mat-raised-button (click)="cancel()">CANCELAR</button>
+      <button mat-raised-button color="primary" (click)="save()">VENDER</button>
     </div>
 </form>

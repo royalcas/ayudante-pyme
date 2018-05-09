@@ -13,7 +13,10 @@ import {
   MatListModule,
   MatTableModule,
   MatFormFieldModule,
-  MatInputModule
+  MatInputModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatAutocompleteModule
 } from '@angular/material';
 import { InvoiceFormComponent } from './invoice-form/invoice-form.component';
 import { ProviderFormComponent } from './provider-form/provider-form.component';
@@ -25,6 +28,8 @@ import { PymeNavMenuComponent } from './pyme-nav-menu/pyme-nav-menu.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CustomerDashboardComponent } from './customer-dashboard/customer-dashboard.component';
+import { CustomerFormComponent } from './customer-form/customer-form.component';
 
 @NgModule({
   imports: [
@@ -43,6 +48,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatTableModule,
     MatFormFieldModule,
     MatInputModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatAutocompleteModule,
     SharedModule,
     PymeRoutingModule
   ],
@@ -54,7 +62,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     InventoryDashboardComponent,
     InventoryFormComponent,
     PymeLayoutComponent,
-    PymeNavMenuComponent
+    PymeNavMenuComponent,
+    CustomerDashboardComponent,
+    CustomerFormComponent
   ],
   bootstrap: [
      PymeLayoutComponent
