@@ -1,22 +1,21 @@
+import { TenantService } from './tenant.service';
 import { PersonType } from './../model/person.model';
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Person } from '../model/person.model';
 import { Observable, from } from 'rxjs';
-import { BaseFirebaseServiceService } from './base-firebase-service.service';
+import { BaseFirebaseService } from './base-firebase-service.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PersonService extends BaseFirebaseServiceService<Person> {
-  constructor(afs: AngularFirestore) {
-    super('directory', afs);
+export class PersonService extends BaseFirebaseService<Person> {
+  constructor(tenantService: TenantService, afs: AngularFirestore) {
+    super('directory', tenantService, afs);
   }
 
-  getCustomers(tenant: string): Observable<Person[]> {
-    return from (
-      this.afs.collection<Person>(this.getCollectionName(tenant), ref => ref.where('type', '==', PersonType.Client)).valueChanges()
-    );
+  getCustomers(): Observable<Person[]> {
+      return this.find(ref => ref.where('type', '==', PersonType.Client));
   }
 
 
@@ -36,9 +35,11 @@ export class PersonService extends BaseFirebaseServiceService<Person> {
   }
 
   getProviders(tenant: string): Observable<Person[]> {
-    return from (
-      this.afs.collection<Person>(this.getCollectionName(tenant), ref => ref.where('type', '==', PersonType.Provider)).valueChanges()
-    );
+      return this.find(ref => ref.where('type', '==', PersonType.Provider));
+  }
+
+  getPartners(tenant: string): Observable<Person[]> {
+      return this.find(ref => ref.where('type', '==', PersonType.Member));
   }
 
 }

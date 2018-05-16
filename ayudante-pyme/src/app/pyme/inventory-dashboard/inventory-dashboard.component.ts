@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'pyme/inventory-dashboard',
+  selector: 'app-pyme-inventory-dashboard',
   templateUrl: './inventory-dashboard.component.html',
   styleUrls: ['./inventory-dashboard.component.css']
 })

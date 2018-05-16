@@ -10,18 +10,21 @@ import { InvoiceService } from '../../shared/services/invoice.service';
 })
 export class DashboardComponent implements OnInit {
   invoices: Invoice[];
-  displayedColumns = ['id', 'date', 'total', 'items'];
+  displayedColumns = ['id', 'date', 'items', 'total', 'actions'];
 
   constructor(private invoiceService: InvoiceService, private router: Router) {}
 
   ngOnInit(): void {
-      this.invoiceService.getAll('hood').subscribe((items: Invoice[]) => {
+      this.invoiceService.getAll().subscribe((items: Invoice[]) => {
         this.invoices = items;
-        console.log(items);
       });
   }
 
   newInvoice(): void {
-    this.router.navigate(['pyme/nueva-factura']);
+    this.router.navigate(['pyme/factura']);
+  }
+
+  goToDetail(invoice: Invoice): void {
+    this.router.navigate(['/pyme/factura', invoice.id]);
   }
 }

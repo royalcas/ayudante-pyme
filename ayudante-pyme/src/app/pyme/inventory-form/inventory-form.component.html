@@ -14,9 +14,17 @@
     </mat-form-field>
 
     <mat-form-field class="full-width">
-        <input matInput placeholder="Cantidad en Inventario" name="id-type" [(ngModel)]="product.quantity" >
-      </mat-form-field>
+      <input matInput placeholder="Cantidad en Inventario" name="id-type" [(ngModel)]="product.quantity" >
+    </mat-form-field>
 
+    <mat-select placeholder="Categoría" [(ngModel)]="product.categoryId" name="category">
+      <mat-option>
+        Sin Categoría
+      </mat-option>
+      <mat-option *ngFor="let category of categories$ | async" [value]="category.id">
+        {{category.name}}
+      </mat-option>
+    </mat-select>
     <div class="actions">
       <button mat-raised-button>CANCELAR</button>
       <button mat-raised-button color="primary" (click)="save()">GUARDAR</button>

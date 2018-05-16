@@ -15,8 +15,7 @@ export class CustomerFormComponent {
   }
 
   savePerson(): void {
-    this.personService.add('hood', this.person).subscribe((data: any) => {
-      console.log(data);
+    this.personService.add(this.person).subscribe((data: any) => {
       this.router.navigate(['pyme/directorio/clientes']);
     });
   }

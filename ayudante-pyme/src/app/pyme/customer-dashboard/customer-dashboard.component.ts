@@ -15,7 +15,7 @@ export class CustomerDashboardComponent implements OnInit {
   constructor(private personService: PersonService, private router: Router) {}
 
   ngOnInit(): void {
-    this.personService.getCustomers('hood').subscribe((people: Person[]) => {
+    this.personService.getCustomers().subscribe((people: Person[]) => {
       this.people = people;
       console.log(people);
     });

@@ -1,20 +1,19 @@
+import { TenantService } from './tenant.service';
 import { Invoice } from './../model/invoice.model';
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable, from } from 'rxjs';
+import { BaseFirebaseService } from './base-firebase-service.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class InvoiceService {
-
-  constructor(private afs: AngularFirestore) { }
-
-  getAll(tenant: string): Observable<Invoice[]> {
-    return this.afs.collection<Invoice>(`${tenant}-invoices`).valueChanges();
+export class InvoiceService extends BaseFirebaseService<Invoice> {
+  constructor(tenantService: TenantService, afs: AngularFirestore) {
+    super('invoices', tenantService, afs);
   }
 
-  add(tenant: string, invoice: Invoice): Observable<any> {
-    return from(this.afs.collection<Invoice>(`${tenant}-invoices`).add({ ...invoice }));
+  mapFromResponse(rawData: any): Invoice {
+    return Invoice.fromJSON(rawData);
   }
 }

@@ -1,7 +1,8 @@
+import { Entity } from './entity.model';
 import { ContactInformation } from './contact.model';
 import { PersonIdentification } from './person-identification.model';
 import { PersonReference } from './person-reference.model';
-export class Person extends PersonReference {
+export class Person extends Entity {
     public static default() {
         return new Person(
             null,

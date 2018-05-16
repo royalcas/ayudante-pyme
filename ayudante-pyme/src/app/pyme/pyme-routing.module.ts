@@ -21,7 +21,8 @@ const coachingRoutes: Routes = [
             { path: 'cliente', component: CustomerFormComponent },
             { path: 'directorio/clientes', component: CustomerDashboardComponent },
             { path: 'nuevo-producto', component: InventoryFormComponent },
-            { path: 'nueva-factura', component: InvoiceFormComponent },
+            { path: 'factura', component: InvoiceFormComponent },
+            { path: 'factura/:id', component: InvoiceFormComponent },
             { path: 'inventario', component: InventoryDashboardComponent },
             { path: 'nuevo-elemento-inventario', component: InventoryFormComponent }
         ]

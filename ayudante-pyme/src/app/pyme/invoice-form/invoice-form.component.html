@@ -1,31 +1,92 @@
-<h1>Factura</h1>
+<h1>FACTURA <small *ngIf="invoice.id">{{invoice.id}}</small></h1>
 <form action="">
-    <mat-form-field class="full-width">
-      <input matInput [(ngModel)]="invoice.date" name="date" [matDatepicker]="picker" placeholder="Fecha">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-    <mat-form-field class="full-width">
-      <input matInput placeholder="Cliente" name="customer" [matAutocomplete]="auto"  [(ngModel)]="invoice.customer" [formControl]="customerFormControl">
-      <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let person of filteredCustomers" [value]="person.identification.idNumber">
-          
-          <span>{{ person.name }}</span>
-          <small>({{person.identification.idNumber}})</small>
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
+  <mat-form-field class="full-width">
+    <input matInput [(ngModel)]="invoice.date" name="date" [matDatepicker]="picker" placeholder="Fecha">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field class="full-width" *ngIf="!invoice.customer">
+    <input matInput placeholder="Cliente" name="customer" [matAutocomplete]="auto" [formControl]="customerFormControl">
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="customerSelected($event)">
+      <mat-option *ngFor="let person of filteredCustomers" [value]="person">
+        <span>{{ person.name }}</span>
+        <small>({{person.identification.idNumber}})</small>
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <div class="customer-container" *ngIf="invoice.customer">
+      <label>Cliente</label>
+      <div class="customer-name">{{invoice.customer.name}} <small>({{invoice.customer.identification.idNumber}})</small></div>
+      <div class="clear-selection">
+        <a (click)="clearCustomer()" mat-button color="accent">Limpiar Cliente</a>
+      </div>
+  </div>
 
-    <mat-form-field class="full-width">
-      <input matInput placeholder="Vendedor" name="seller" [(ngModel)]="invoice.seller">
-    </mat-form-field>
 
-    <mat-form-field >
-      <textarea matInput placeholder="Observaciones" name="observations"></textarea>
-    </mat-form-field>
+  <mat-form-field class="full-width">
+    <input matInput placeholder="Vendedor" name="seller" [(ngModel)]="invoice.seller">
+  </mat-form-field>
 
-    <div class="actions">
-      <button mat-raised-button (click)="cancel()">CANCELAR</button>
-      <button mat-raised-button color="primary" (click)="save()">VENDER</button>
+  <hr>
+  <h2>PRODUCTOS</h2>
+  <div class="products">
+    <div class="product-cart-item" *ngFor="let item of invoice.items; let i = index">
+      <mat-card class="dashboard-card">
+        <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Abrir Menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" xPosition="before">
+          <button mat-menu-item (click)="removeFromCartItem(i)">Eliminar</button>
+        </mat-menu>
+        <mat-card-content>
+          <div class="cart-item-form" fxLayout="row" fxLayoutAlign="flex-start center">
+            <div class="cart-item-product" fxFlex="20%">
+              <mat-form-field class="full-width">
+                <mat-select placeholder="Producto" (selectionChange)="selectCartItem($event, item)" name="food">
+                  <mat-option *ngFor="let product of products" [value]="product">
+                    {{product.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            
+            <div class="cart-item-value" fxFlex="20%" *ngIf="item.name">
+              <mat-form-field class="full-width">
+                <input matInput type="number" min="0" max="100" placeholder="Cantidad" name="quantity" [(ngModel)]="item.quantity">
+              </mat-form-field>
+            </div>
+            <div class="cart-item-value" fxFlex="20%" *ngIf="item.name">
+              <span>{{item.valuePerUnitDiscount.value | currency:item.currency:'symbol-narrow':'.0'}}</span>
+              <small> / {{item.valuePerUnit.value | currency:item.currency:'symbol-narrow':'.0'}}</small>
+            </div>
+            <div class="cart-item-discount" fxFlex="20%" *ngIf="item.name">
+              <mat-form-field class="full-width">
+                <input matInput type="number" min="0" max="100" placeholder="Descuento %" name="discount-percent" [(ngModel)]="item.discountPercentage">
+              </mat-form-field>
+            </div>
+            <div class="cart-item-total-value" fxFlex="20%" *ngIf="item.name">
+              <b>{{item?.total?.value | currency:item.currency:'symbol-narrow':'.0'}}</b>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+     
     </div>
+    <mat-card class="dashboard-card">
+      <mat-card-content>
+        <div class="total-container">
+          <label>Total</label> <span class="total-value">{{invoice.total.value | currency:invoice.total.currency:'symbol-narrow':'.0'}}</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <button mat-raised-button color="primary" (click)="addItemToCart($event)">AGREGAR PRODUCTO</button>
+  </div>
+  <hr>
+
+  <div class="actions">
+    <button mat-raised-button (click)="cancel()">CANCELAR</button>
+    <button mat-raised-button color="primary" (click)="save()">VENDER</button>
+  </div>
+  <app-comment-box [targetId]="invoice.id"></app-comment-box>
 </form>

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'pyme/provider-form',
+  selector: 'app-pyme-provider-form',
   templateUrl: './provider-form.component.html',
   styleUrls: ['./provider-form.component.css']
 })

@@ -16,8 +16,10 @@ import {
   MatInputModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MatAutocompleteModule
+  MatAutocompleteModule,
+  MatSelectModule
 } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { InvoiceFormComponent } from './invoice-form/invoice-form.component';
 import { ProviderFormComponent } from './provider-form/provider-form.component';
 import { ProviderDashboardComponent } from './provider-dashboard/provider-dashboard.component';
@@ -36,6 +38,7 @@ import { CustomerFormComponent } from './customer-form/customer-form.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    FlexLayoutModule,
     MatGridListModule,
     MatCardModule,
     MatMenuModule,
@@ -51,6 +54,7 @@ import { CustomerFormComponent } from './customer-form/customer-form.component';
     MatNativeDateModule,
     MatDatepickerModule,
     MatAutocompleteModule,
+    MatSelectModule,
     SharedModule,
     PymeRoutingModule
   ],

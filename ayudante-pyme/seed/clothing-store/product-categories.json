@@ -1,0 +1,116 @@
+[
+  {
+    "name": "Hombre",
+    "children": [
+        {
+            "name": "Camisetas"
+        },
+        {
+            "name": "Camibusos"
+        },
+        {
+            "name": "Accesorios",
+            "children": [
+                {
+                    "name": "Gorra"
+                },
+                {
+                    "name": "Tulas"
+                },
+                {
+                    "name": "Medias"
+                }
+            ]
+        },
+        {
+            "name": "Esqueletos"
+        },
+        {
+            "name": "Busos"
+        },
+        {
+            "name": "Chaquetas"
+        },
+        {
+            "name": "Pantalones"
+        }
+    ]
+  },
+  {
+      "name": "Mujer",
+      "children":[
+        {
+            "name": "Camisetas"
+        },
+        {
+            "name": "Camibusos"
+        },
+        {
+            "name": "Esqueletos"
+        },
+        {
+            "name": "Accesorios",
+            "children": [
+                {
+                    "name": "Gorra"
+                },
+                {
+                    "name": "Tulas"
+                },
+                {
+                    "name": "Medias"
+                }
+            ]
+        },
+        {
+            "name": "Busos"
+        },
+        {
+            "name": "Chaquetas"
+        },
+        {
+            "name": "Pantalones"
+        },
+        {
+            "name": "Crop Tops"
+        },
+        {
+            "name": "Blusas"
+        },
+        {
+            "name": "Legings"
+        }
+      ]
+  },{
+      "name": "Accesorios",
+      "children": [
+        {
+            "name": "Gorra"
+        },
+        {
+            "name": "Gorro"
+        },
+        {
+            "name": "Cuello"
+        },
+        {
+            "name": "Bandana"
+        },
+        {
+            "name": "Pañoleta"
+        },
+        {
+            "name": "Tulas"
+        },
+        {
+            "name": "Medias"
+        },
+        {
+            "name": "Pines"
+        },
+        {
+            "name": "Parches"
+        }
+    ]
+  }
+]
